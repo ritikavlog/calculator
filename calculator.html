@@ -1,0 +1,203 @@
+
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+   <title>Tip Calculator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+<div class="container"><br/>
+  <div class="row">
+    <div class="col-lg-6">
+    <label>Bill</label>
+    <span>
+<input type="text" name="bill" class="form-control" id="bill" ></span>  
+<p id="billerror"></p>      
+          <label>Tip%</label>
+                      
+                                        <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
+                                          <span class="glyphicon glyphicon-minus"></span>
+                                        </button>
+                                    </span>
+                                    <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100" readonly="">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                       <label>Number of People</label> 
+                                        <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="quantity-left btn btn-danger btn-number" id="quantity-left" data-type="minus" data-field="">
+                                          <span class="glyphicon glyphicon-minus"></span>
+                                        </button>
+                                    </span>
+                                    <input type="text" id="qty" name="qty" class="form-control input-number" value="1" min="1" max="100" readonly="">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="quantity-right btn btn-success btn-number" id="quantity-right" data-type="plus" data-field="">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                        </div>
+                    
+                      
+
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-sm-6">
+<h1>Tip</h1>
+<p>per person</p>
+<h1>Total</h1>
+<p>per person</p>
+</div>
+
+ <div class="col-sm-6">
+ <h1>$<span id="screen1">0.00</span></h1><br/>
+ <h1>$<span id="screen2">0.00</span></h1>
+
+</div>
+
+
+</div>
+        </div>
+  
+
+
+  </div>
+</div>
+  </body>
+  </html>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+   $('.quantity-right-plus').click(function(e){
+        
+
+        e.preventDefault();
+        
+        var quantity = parseInt($('#quantity').val());
+        
+        
+            
+            $('#quantity').val(quantity + 1);
+
+          
+          
+        
+    });
+
+     $('.quantity-left-minus').click(function(e){
+        
+        e.preventDefault();
+      
+        var quantity = parseInt($('#quantity').val());
+        
+      
+      
+          
+            if(quantity>0){
+            $('#quantity').val(quantity - 1);
+            }
+    });
+
+
+   $('.quantity-right').click(function(e){
+        
+        
+        e.preventDefault();
+      
+        var quantity = parseInt($('#qty').val());
+        
+        
+            
+            $('#qty').val(quantity + 1);
+
+          
+          
+        
+    });
+
+     $('.quantity-left').click(function(e){
+      
+        e.preventDefault();
+      
+        var quantity = parseInt($('#qty').val());
+        
+  
+            if(quantity>0){
+            $('#qty').val(quantity - 1);
+            }
+    });
+
+
+ $('#quantity-left').click(function() {
+  
+  var bill = document.getElementById("bill").value;
+    var quantity = document.getElementById("quantity").value;
+    var qty = document.getElementById("qty").value;
+  
+              var c = (bill * (quantity/100))/qty;
+              var d  = c + Number(bill/qty);
+
+            document.getElementById("screen1").innerHTML=c;
+            document.getElementById("screen2").innerHTML=d;
+
+        });    
+ $('#quantity-right').click(function() {
+    var bill = document.getElementById("bill").value;
+    var quantity = document.getElementById("quantity").value;
+    var qty = document.getElementById("qty").value;
+  
+              var c = (bill * (quantity/100))/qty;
+              var d  = c + Number(bill/qty);
+
+            document.getElementById("screen1").innerHTML=c;
+            document.getElementById("screen2").innerHTML=d;
+
+           
+        }); 
+        
+        
+
+//   $('#bill').keyup(function() {
+
+//   var bill = document.getElementById("bill").value;
+//   var bill_regex = /^[0-9\s]*$/;
+// if(bill == ''){
+
+//  $('#billerror').show();
+//  $('#billerror').html("**Please Fill the Number");
+//  $('#billerror').focus();
+//  $('#billerror').css("color","red");
+//  bill_err = false;
+//  return false;
+// }
+// else if((!bill.match(bill_regex) || bill.length == 0))
+// {
+// $('#billerror').show();
+//  $('#billerror').html("**Please Fill Digit");
+//  $('#billerror').focus();
+//  $('#billerror').css("color","red");
+//  bill_err = true;
+//  return false;
+// }
+// else{
+//  $('#billerror').hide();
+//  }
+//   });
+
+
+});
+
+
+</script>
